@@ -37,8 +37,8 @@ Goals:
 """
 import pandas as pd
 
-import length
-from parsers import text_parser, kiss_parser, url_parser, emo_parser, sanitizer
+from analyzers import length, emote as emote_analyzer
+from parsers import text, kiss, url, emote, sanitizer
 
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -46,13 +46,13 @@ pd.set_option('display.width', 1000)
 
 
 def preprocess(ts):
-    emo_stripped, emo_df = emo_parser.parse(ts["text"])
+    emo_stripped, emo_df = emote.parse(ts["text"])
     ts = pd.concat([ts, emo_df], axis=1)
     ts["text"] = emo_stripped
 
-    ts = pd.concat([ts, kiss_parser.parse(ts["text"])], axis=1)
+    ts = pd.concat([ts, kiss.parse(ts["text"])], axis=1)
 
-    url_replaced, url_count = url_parser.parse(ts["text"])
+    url_replaced, url_count = url.parse(ts["text"])
     ts = pd.concat([ts, url_count], axis=1)
     ts["text"] = url_replaced
 
@@ -64,12 +64,13 @@ def preprocess(ts):
 
 def main():
     # ts = text_parser.parse("data/short.txt")
-    ts = text_parser.parse("data/test.txt")
+    ts = text.parse("data/test.txt")
     # ts = text_parser.parse("data/full_conv.txt")
     ts = preprocess(ts)
 
-    print(ts[:10])
-    length.foo(ts)
+    print(ts[:20])
+    # length.foo(ts)
+    emote_analyzer.foo(ts)
 
 
 if __name__ == "__main__":

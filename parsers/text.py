@@ -63,7 +63,8 @@ def parse(fname):
 
             texts.append([timestamp, t_delta, message_id - 1, conversation_id, name, text])
     # TODO: name to pd.Categorical data type
-    text_dataframe = pd.DataFrame(texts, columns=["timestamp", "t_delta", "message_id", "conversation_id", "name", "text"])
+    text_dataframe = pd.DataFrame(texts, columns=["datetime", "t_delta", "message_id", "conversation_id", "name", "text"])
+    text_dataframe["datetime"] = pd.to_datetime(text_dataframe["datetime"], infer_datetime_format=True)
     text_dataframe.index.name = "text_id"
 
     return text_dataframe

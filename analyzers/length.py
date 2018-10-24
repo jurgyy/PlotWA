@@ -6,6 +6,17 @@ Length
  - Conversation length by word count, duration and messages
 """
 
+"""
+6                          
+5       aa     bb          
+4  aa   aa   aabb          
+3  aabb aabb aabb          
+2  aabb aabb aabb    bb     
+1  aabb aabb aabb    bb     
+    0    1    2     3    
+"""
+
+
 import pandas as pd
 from collections import Counter
 

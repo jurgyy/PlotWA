@@ -5,10 +5,10 @@ import unicodedata
 def strip_accents(texts: pd.Series):
     """
     :param texts:
-    :type texts: pd.Series.
+    :type texts: pandas.Series.
 
     :returns: The processed Series.
-    :rtype: pd.Series.
+    :rtype: pandas.Series.
     """
     # try:
     #     text = str(text, 'utf-8')
