@@ -1,27 +1,20 @@
-"""
-Length
- - Text length distribution
- - Message length distribution (a Message contains of 1 or more consecutive texts from the same person with a gap
-                                between them of no larger than 5 minutes)
- - Conversation length by word count, duration and messages
-"""
-
-"""
-6                          
-5       aa     bb          
-4  aa   aa   aabb          
-3  aabb aabb aabb          
-2  aabb aabb aabb    bb     
-1  aabb aabb aabb    bb     
-    0    1    2     3    
-"""
-
-
 import pandas as pd
 from collections import Counter
 
 
-def get_length_text(df: pd.DataFrame):
+def get_length_text(df):
+    """
+    :param df: A parsed and preprocessed texts DataFrame
+    :type df: pandas.DataFrame
+
+    :return: A tuple with in the first index a multiindexed DataFrame with index levels name and num_words. The
+             DataFrame has two columns: "count" with the number of times a text with "num_words" occurred and
+             "normalized" with count normalized so that for each "name" the values add up to one.
+             In the second index of the tuple a distribution DataFrame is returned. This DataFrame is indexed by "name"
+             and has columns "mean" with the mean of the number of words, "std" with the standard deviation and "count"
+             with the total number of words.
+    :rtype: tuple[Pandas.DataFrame]
+    """
     num_words_grouper = df.groupby(["name", "num_words"])
     text_length_hist = num_words_grouper["num_words"].agg(["count"])
 
@@ -32,7 +25,20 @@ def get_length_text(df: pd.DataFrame):
     return text_length_hist, text_length_distr
 
 
-def get_length_message(df: pd.DataFrame):
+def get_length_message(df):
+    """
+    :param df: A parsed and preprocessed texts DataFrame
+    :type df: pandas.DataFrame
+
+    :return: A tuple with in the first index a multiindexed DataFrame with index levels name and message_id. The
+             DataFrame has three columns: "num_words" with the number of words in a message, "num_texts" with the number
+             of texts in a message and "normalized" with the normalized number of words so that for each "name" the
+             values add up to one.
+             In the second index of the tuple a distribution DataFrame is returned. This DataFrame is indexed by "name"
+             and has columns "mean" with the mean of the number of words, "std" with the standard deviation and "count"
+             with the total number of words.
+    :rtype: tuple[Pandas.DataFrame]
+    """
     num_words_grouper = df.groupby(["name", "message_id"])
     text_length_hist = num_words_grouper["num_words"].agg(["sum", "count"])
     text_length_hist.columns = ["num_words", "num_texts"]
@@ -44,10 +50,10 @@ def get_length_message(df: pd.DataFrame):
     return text_length_hist, text_length_distr
 
 
-def get_length_conversation(df: pd.DataFrame):
+def get_length_conversation(df):
     """
     :param df: A parsed and preprocessed texts DataFrame
-    :type: pandas.DataFrame
+    :type df: pandas.DataFrame
 
     :return: A multi indexed DataFrame with index levels conversation_id and name. The DataFrame has mulitlevel columns
              namely:
@@ -58,11 +64,11 @@ def get_length_conversation(df: pd.DataFrame):
     :rtype: pandas.DataFrame
     """
     conv_grouper = df.groupby(["conversation_id", "name"])
-    convs = conv_grouper["name", "num_words", "message_id", "timestamp"].agg({
+    convs = conv_grouper["name", "num_words", "message_id", "datetime"].agg({
         "name": ["count"],
         "num_words": ["sum"],
         "message_id": [pd.Series.nunique],
-        "timestamp": ["min", "max"]
+        "datetime": ["min", "max"]
     })
 
     conv_length = pd.DataFrame.from_dict(Counter(convs.index.labels[0]), orient="index")[0]
