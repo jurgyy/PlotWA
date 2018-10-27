@@ -49,7 +49,9 @@ def parse(texts: pd.Series):
         )
     )
     sanitized.name = "sanitized"
-    return sanitized.str.split(' ')
+    sanitized = sanitized.str.split(' ')
+    sanitized = sanitized.apply(tuple)
+    return sanitized
 
 
 if __name__ == '__main__':
@@ -74,6 +76,6 @@ if __name__ == '__main__':
     pd.testing.assert_series_equal(expected_repeat, strip_repeated_letters(inp_repeat))
 
     inp_combined = pd.Series(["Äá!", "ÈË, õÕ, 111", "éË...XX", " Xx: xX ", "à éì õ"])
-    expected_combined = pd.Series([["aa"], ["ee", "oo", "111"], ["ee", "xx"], ["xx", "xx"], ["ei"]], name="sanitized")
-    pd.testing.assert_series_equal(expected_combined, parse(inp_combined))
+    expected_combined = pd.Series([("aa",), ("ee", "oo", "111"), ("ee", "xx"), ("xx", "xx"), ("ei",)], name="sanitized")
+    pd.testing.assert_series_equal(expected_combined, parse(inp_combined), check_exact=True)
 
