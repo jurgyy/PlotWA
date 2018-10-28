@@ -60,10 +60,13 @@ def parse(fname):
 
             last_timestamp = timestamp
             last_name = name
+            weekday = timestamp.weekday()
+            hour = timestamp.hour
 
-            texts.append([timestamp, t_delta, message_id - 1, conversation_id, name, text])
+            texts.append([timestamp, t_delta, weekday, hour, message_id - 1, conversation_id, name, text])
     # TODO: name to pd.Categorical data type
-    text_dataframe = pd.DataFrame(texts, columns=["datetime", "t_delta", "message_id", "conversation_id", "name", "text"])
+    text_dataframe = pd.DataFrame(texts, columns=["datetime", "t_delta", "weekday", "hour", "message_id",
+                                                  "conversation_id", "name", "text"])
     text_dataframe["datetime"] = pd.to_datetime(text_dataframe["datetime"], infer_datetime_format=True)
     text_dataframe.index.name = "text_id"
 

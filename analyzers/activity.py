@@ -10,11 +10,7 @@ def by_week_day(df):
     where Monday=0 and Sunday=6.
     :rtype: pandas.Series
     """
-    adf = df[["name", "datetime"]].copy()
-    adf.loc[:, "weekday"] = adf["datetime"].apply(lambda s: s.weekday())
-    adf.drop("datetime", axis=1, inplace=True)
-
-    day_grouper = adf.groupby(["name", "weekday"])
+    day_grouper = df.groupby(["name", "weekday"])
     return day_grouper["weekday"].agg("count")
 
 
@@ -27,11 +23,7 @@ def by_hour(df):
     12 a.m. = 0 and 11 p.m. is 23.
     :rtype: pandas.Series
     """
-    adf = df[["name", "datetime"]].copy()
-    adf.loc[:, "hour"] = adf["datetime"].apply(lambda s: s.hour)
-    adf.drop("datetime", axis=1, inplace=True)
-
-    hour_grouper = adf.groupby(["name", "hour"])
+    hour_grouper = df.groupby(["name", "hour"])
     return hour_grouper["hour"].agg("count")
 
 
