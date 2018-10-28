@@ -11,7 +11,7 @@ def most_popular_per_month(df, top_n=3):
     :param top_n: The top n most popular emotes that should be returned
     :type top_n: int
 
-    :return: A series object index on "name" and "datetime" month with tuples of the most popular emote and the
+    :return: A series object with indices on "name" and "datetime" month with tuples of the most popular emote and the
     frequency
     :rtype: pandas.Series
     """
@@ -33,7 +33,7 @@ def number_per_message(df):
     :param df: A parsed and preprocessed texts DataFrame
     :type df: pandas.DataFrame
 
-    :return: A series object index on "name" with Counter objects of the number of emotes in a message
+    :return: A series object indexed on "name" with Counter objects of the number of emotes in a message
     :rtype: pandas.Series
     """
     df["emotes"] = df["emoji"] + df["emoticons"]
