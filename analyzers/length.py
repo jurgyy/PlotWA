@@ -7,7 +7,7 @@ def get_length_text(df):
     :param df: A parsed and preprocessed texts DataFrame
     :type df: pandas.DataFrame
 
-    :return: A tuple with in the first index a multiindexed DataFrame with index levels name and num_words. The
+    :return: A tuple with in the first index a multiindexed DataFrame with index levels "name" and "num_words". The
              DataFrame has two columns: "count" with the number of times a text with "num_words" occurred and
              "normalized" with count normalized so that for each "name" the values add up to one.
              In the second index of the tuple a distribution DataFrame is returned. This DataFrame is indexed by "name"
@@ -30,14 +30,14 @@ def get_length_message(df):
     :param df: A parsed and preprocessed texts DataFrame
     :type df: pandas.DataFrame
 
-    :return: A tuple with in the first index a multiindexed DataFrame with index levels name and message_id. The
+    :return: A tuple with in the first index a multiindexed DataFrame with index levels "name" and "message_id". The
              DataFrame has three columns: "num_words" with the number of words in a message, "num_texts" with the number
              of texts in a message and "normalized" with the normalized number of words so that for each "name" the
              values add up to one.
              In the second index of the tuple a distribution DataFrame is returned. This DataFrame is indexed by "name"
              and has columns "mean" with the mean of the number of words, "std" with the standard deviation and "count"
              with the total number of words.
-    :rtype: tuple[Pandas.DataFrame]
+    :rtype: tuple[pandas.DataFrame]
     """
     num_words_grouper = df.groupby(["name", "message_id"])
     text_length_hist = num_words_grouper["num_words"].agg(["sum", "count"])
