@@ -76,18 +76,6 @@ def get_length_conversation(df):
     return convs
 
 
-def foo(df: pd.DataFrame):
-    a, b = get_length_text(df)
-    print(a)
-    print(b)
-    print("----")
-    a, b = get_length_message(df)
-    print(a)
-    print(b)
-    print("----")
-    a = get_length_conversation(df)
-    print(a)
-
 
 if __name__ == '__main__':
     # TODO: unit tests
