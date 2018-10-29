@@ -76,7 +76,6 @@ def get_length_conversation(df):
     return convs
 
 
-
 if __name__ == '__main__':
     # TODO: unit tests
     pass
