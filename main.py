@@ -37,9 +37,9 @@ Goals:
  [✓, ✓, _, _] Kisses over time
 
  Conversations
- [✓, _, _, _] Distribution of interval between each other
- [✓, _, _, _] Average response time
- [_, _, _, _] Longest time between two texts of each other
+ [✓, ✓, _, _] Distribution of interval between each other
+ [✓, ✓, _, _] Average response time within a conversation
+ [✓, ✓, _, _] Longest time between two texts of each other
 
 
  Word Semantics and Corpus statistics
@@ -53,6 +53,9 @@ Goals:
  [_, _, _, _] number of texts that contain a question mark
  [_, _, _, _] number of media files
  [_, _, _, _] number of urls
+
+ Other:
+    Optimize: https://engineering.upside.com/a-beginners-guide-to-optimizing-pandas-code-for-speed-c09ef2c6a4d6
 """
 import pandas as pd
 
@@ -87,9 +90,14 @@ def main():
     # ts = text.parse("data/full_conv.txt")
     ts = preprocess(ts)
 
-    print(ts[:20])
+    print(ts[:25])
+    # print(analyzers.activity.by_hour(ts))
+    # print(analyzers.activity.by_week_day(ts))
+    # print(analyzers.activity.by_day(ts))
     # length.foo(ts)
-    emote_analyzer.foo(ts)
+    # emote_analyzer.foo(ts)
+    # print(analyzers.length.get_length_conversation(ts))
+    print(analyzers.conv.conversation_interval_distribution(ts))
 
 
 if __name__ == "__main__":
