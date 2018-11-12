@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>PlotWA</title>
+    <meta name="description" content="Visualizing WhatsApp chats">
+    <meta name="author" content="Jurgy">
+
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="header"></div>
+    <div class="content">
+        <div class="middle select">
+            <h1>Analyse WhatsApp Conversations</h1>
+            <div class="selector">
+                <form>
+                    <input type="file" id="file" accept="image/*.txt" placeholder="Select File"/>
+                    <label for="file" class="green-hover-bg">Select File</label>
+                </form>
+            </div>
+            <div class="howToLink">
+                <a class="anchor green-hover" id="howToLink" href="#howTo">How to extract WhatsApp conversations</a>
+            </div>
+        </div>
+
+        <div class="middle howTo accordion">
+            <h1 class="accordion-header green-hover-bg"><a id="howTo"></a>Extracting Conversations</h1>
+            <div class="middleContent accordion-content">
+                If you would like to keep a record of your messages on a computer or in an email, you can email yourself individual chats. Please follow these steps:
+
+                <ol>
+                    <li>Open the chat you wish to export.</li>
+                    <li>Tap on [...] More  > info or group info.</li>
+                    <li>Tap on [...] More  > email chat history.</li>
+                </ol>
+
+                From <a href="https://faq.whatsapp.com/en/wp/22548236">the official website</a>.<br>
+                Then, open e-mail on this device and download the .txt file.
+            </div>
+        </div>
+
+        <div class="middle customize accordion">
+            <h1 class="accordion-header green-hover-bg">Customize Visaulization</h1>
+            <div class="middleContent accordion-content">
+                customize stuff
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        Not affiliated with Facebook or WhatsApp
+    </div>
+</div>
+</body>
+</html>
