@@ -13,7 +13,7 @@ def get_length_text(df):
              In the second index of the tuple a distribution DataFrame is returned. This DataFrame is indexed by "name"
              and has columns "mean" with the mean of the number of words, "std" with the standard deviation and "count"
              with the total number of words.
-    :rtype: tuple[Pandas.DataFrame]
+    :rtype: tuple[pandas.DataFrame]
     """
     num_words_grouper = df.groupby(["name", "num_words"])
     text_length_hist = num_words_grouper["num_words"].agg(["count"])
