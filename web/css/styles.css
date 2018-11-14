@@ -85,6 +85,7 @@ a.green-hover:hover {
 
 .green-hover {
     transition: color 0.3s;
+    cursor: pointer;
 }
 
 .green-hover:hover {
@@ -93,6 +94,7 @@ a.green-hover:hover {
 
 .green-hover-bg {
     transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .green-hover-bg:hover {
@@ -113,7 +115,6 @@ input[type="file"] {
 input[type="file"] + label {
     background-color: #DDD6CE;
     border-radius: 1rem;
-    cursor: pointer;
     display: inline-block;
     font-size: 1rem;
     height: 2rem;
@@ -136,7 +137,6 @@ input[type="file"] + label:hover {
 }
 
 .accordion-header {
-	cursor: pointer;
 }
 
 .accordion-header:hover {
@@ -148,7 +148,54 @@ input[type="file"] + label:hover {
 
 
 .customize {
+    padding: 0;
+}
 
+.customize-nav {
+    display: inline-block;
+}
+
+.customize-nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.customize-nav li {
+    font-size: 20;
+    max-width: 15rem;
+    min-width: 10rem;
+    text-align: right;
+    background-color: white;
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #F2F2F2;
+    //border-image: linear-gradient(to left, #ffffff00, #009688, #ffffff00) 1 0% 100%;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.customize-nav li:last-child {
+    border-bottom: none;
+}
+.customize-nav li:first-child {
+    border-top: none;
+}
+
+.customize-nav .active {
+    background-color: #E9EBEB;
+}
+
+.customize-nav {
+    background-color: red;
+}
+
+.customizer {
+    display: inline-block;
+    width: 80%;
+    background-color: green;
+}
+
+.customizer.hidden {
+    visibility: hidden;
 }
 
 

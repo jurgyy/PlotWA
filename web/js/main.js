@@ -33,4 +33,9 @@ $(window).on('load', function() {
             $(this).next().text(dflt);
         }
     });
+
+    $(".customize-nav li.nav-item").on("click", function(event) {
+        $(this).parent().find("li.nav-item").toggleClass("active", false);
+        $(this).toggleClass("active");
+    });
 });
