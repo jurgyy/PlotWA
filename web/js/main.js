@@ -37,5 +37,9 @@ $(window).on('load', function() {
     $(".customize-nav li.nav-item").on("click", function(event) {
         $(this).parent().find("li.nav-item").toggleClass("active", false);
         $(this).toggleClass("active");
+
+        var top_parent = $(this).parent().parent().parent();
+        top_parent.find(".customizer").toggleClass("hidden", true)
+        top_parent.find(".customize-" + $(this).attr("id")).toggleClass("hidden", false);
     });
 });

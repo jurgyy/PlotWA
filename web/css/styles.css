@@ -14,7 +14,6 @@ body {
 
 .content {
     width: 75%;
-    //height: 95%;
     left: 0;
     top: 0;
     margin: 25px 12.5% 10px 12.5%;
@@ -137,6 +136,7 @@ input[type="file"] + label:hover {
 }
 
 .accordion-header {
+    user-select: none;
 }
 
 .accordion-header:hover {
@@ -149,10 +149,15 @@ input[type="file"] + label:hover {
 
 .customize {
     padding: 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.customize > * {
 }
 
 .customize-nav {
-    display: inline-block;
+    order: 0;
 }
 
 .customize-nav ul {
@@ -185,17 +190,20 @@ input[type="file"] + label:hover {
 }
 
 .customize-nav {
-    background-color: red;
 }
 
 .customizer {
-    display: inline-block;
-    width: 80%;
+    word-wrap: break-word;
+    order: 1;
+    flex: 1 100%;
     background-color: green;
 }
 
 .customizer.hidden {
+    display: none;
     visibility: hidden;
+    width: 0;
+    height: 0;
 }
 
 
