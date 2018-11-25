@@ -58,6 +58,8 @@ Goals:
     Optimize: https://engineering.upside.com/a-beginners-guide-to-optimizing-pandas-code-for-speed-c09ef2c6a4d6
 """
 import pandas as pd
+from flask import Flask, redirect, request, render_template
+from flask import flash as fflash
 
 import analyzers
 import parsers
@@ -65,6 +67,28 @@ import parsers
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
+
+app = Flask(__name__)
+
+
+def flash(*arg, **kwargs):
+    print(*arg, **kwargs)
+    fflash(*arg, **kwargs)
+
+
+@app.route("/")
+def homepage():
+    return render_template("main.html")
+
+
+@app.route("/", methods=["POST"])
+def main_post():
+    if 'textfile' not in request.files:
+        flash('No file part')
+        return redirect(request.url)
+
+    file = request.files["textfile"].read()
+    return str(file).replace("<Media weggelaten>", "[media]").replace("\\r\\n", "<br>").replace("\\n", "<br>")
 
 
 def preprocess(ts):
@@ -85,19 +109,21 @@ def preprocess(ts):
 
 
 def main():
+    app.secret_key = "0"
+    app.run()
     # ts = text.parse("data/short.txt")
-    ts = parsers.text.parse("data/test.txt")
+    # ts = parsers.text.parse("data/test.txt")
     # ts = text.parse("data/full_conv.txt")
-    ts = preprocess(ts)
+    # ts = preprocess(ts)
 
-    print(ts[:25])
+    # print(ts[:25])
     # print(analyzers.activity.by_hour(ts))
     # print(analyzers.activity.by_week_day(ts))
     # print(analyzers.activity.by_day(ts))
     # length.foo(ts)
     # emote_analyzer.foo(ts)
     # print(analyzers.length.get_length_conversation(ts))
-    print(analyzers.conv.conversation_interval_distribution(ts))
+    # print(analyzers.conv.conversation_interval_distribution(ts))
 
 
 if __name__ == "__main__":

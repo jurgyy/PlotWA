@@ -6,9 +6,9 @@
     <meta name="description" content="Visualizing WhatsApp chats">
     <meta name="author" content="Jurgy">
 
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/jquery-3.3.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 
 <body>
@@ -18,9 +18,10 @@
         <div class="middle select">
             <h1>Analyse WhatsApp Conversations</h1>
             <div class="selector">
-                <form>
-                    <input type="file" id="file" accept=".txt" placeholder="Select File"/>
+                <form action="." method="POST" enctype=multipart/form-data>
+                    <input name="textfile" type="file" id="file" accept=".txt" placeholder="Select File"/>
                     <label for="file" class="green-hover-bg">Select File</label>
+                    <input type="submit" name="textfile-form" value="Analyze!">
                 </form>
             </div>
             <div class="howToLink">
@@ -57,7 +58,8 @@
                     </ul>
                 </div>
                 <div class="customizer customize-sanitize">
-                    a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
+                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    <br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>a<br>
                 </div>
                 <div class="customizer customize-emotes hidden">
                     b
